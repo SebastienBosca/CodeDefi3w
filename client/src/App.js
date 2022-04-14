@@ -7,8 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Table from 'react-bootstrap/Table';
 import Voting from "./contracts/Voting.json";
 import getWeb3 from "./getWeb3";
-import "./App.css";
-//import NumberFormat from "react-number-format";
+import "./App.css"; 
 
 class App extends Component {
   state = { web3: null, accounts: null, contract: null, ListVoters: null, win: [] };
@@ -28,9 +27,7 @@ class App extends Component {
         Voting.abi,
         "0x308965Ca5e00300c18FCF5c743a121e574E083E9", 
       );
-
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
+ 
       this.setState({ web3, accounts, contract: instance }, this.runInit);
     } catch (error) {
       // Catch any errors for any of the above operations.
@@ -56,17 +53,15 @@ class App extends Component {
     // calculer le numéro de la prochaine étape
     const NextStep = parseInt(status)+1-(status==5)*6;
 
-
     // récupérer le nombre de propositions
     const propnumber = await contract.methods.getNombreProp().call();
 
     //récupérer la liste des propositions
     const props = await contract.methods.getProp().call();
      
-   // récupérer les gagnants 
-  // if (status==5) {const win = await contract.methods.getWinner().call();} else if (!status==5) {const win = [];};
-   // const win = []+(status==5)*(await contract.methods.getWinner().call()) ;
-  const win = [];
+    // récupérer les gagnants 
+    const win = await contract.methods.getWinner().call();
+ 
 
 
     // Mettre à jour le state 
@@ -443,7 +438,7 @@ if (this.state.status==5) {
         <br></br>
  <div style={{display: 'flex', justifyContent: 'center'}}>
         <Card style={{ width: '50rem' }}>
-            <Card.Header><strong>Les propositions gagnantes ont le n°:</strong></Card.Header>
+            <Card.Header><strong>La ou les propositions gagnantes ont le ou les n°:</strong></Card.Header>
             <Card.Body>
               <ListGroup variant="flush">
                 <ListGroup.Item>
