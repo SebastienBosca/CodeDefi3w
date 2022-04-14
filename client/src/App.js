@@ -8,7 +8,7 @@ import Table from 'react-bootstrap/Table';
 import Voting from "./contracts/Voting.json";
 import getWeb3 from "./getWeb3";
 import "./App.css";
-import NumberFormat from "react-number-format";
+//import NumberFormat from "react-number-format";
 
 class App extends Component {
   state = { web3: null, accounts: null, contract: null, ListVoters: null, win: [] };
